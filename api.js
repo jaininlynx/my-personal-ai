@@ -1,4 +1,4 @@
-const API_URL = "YOUR_CLOUDFLARE_WORKER_URL";
+const API_URL = "https://small-boat-a3a3.therebelofphoenix.workers.dev";
 
 async function askAI(message) {
   const response = await fetch(API_URL, {
