@@ -1,5 +1,4 @@
-const API_URL =
-  "https://small-boat-a3a3.therebelofphoenix.workers.dev";
+const API_URL = "https://round-tree-414e.therebelofphoenix.workers.dev";
 
 async function askAI(message) {
   const response = await fetch(API_URL, {
