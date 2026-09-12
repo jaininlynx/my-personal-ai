@@ -1,4 +1,5 @@
-const API_URL = "https://small-boat-a3a3.therebelofphoenix.workers.dev";
+const API_URL =
+  "https://small-boat-a3a3.therebelofphoenix.workers.dev";
 
 async function askAI(message) {
   const response = await fetch(API_URL, {
@@ -6,12 +7,24 @@ async function askAI(message) {
     headers: {
       "Content-Type": "application/json"
     },
-    body: JSON.stringify({ message })
+    body: JSON.stringify({
+      message: message
+    })
   });
 
+  const data = await response.json();
+
   if (!response.ok) {
-    throw new Error("AI server error");
+    throw new Error(data.error || "Server error");
   }
 
-  return await response.json();
+  if (data.error) {
+    throw new Error(data.error);
+  }
+
+  if (!data.reply) {
+    throw new Error("The Worker returned no reply.");
+  }
+
+  return data;
 }
